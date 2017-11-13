@@ -1,5 +1,7 @@
 package curr.calc.web;
 
+import curr.calc.utils.CurrencyHolder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +21,14 @@ public class CalculatorServlet extends HttpServlet {
         req.setAttribute("company", userData.getCompanyInfo());
         req.setAttribute("isWidgetActive", dao.isWidgetActive(userData.getCompanyId()));
         req.setAttribute("isSync", SyncDao.getSyncState(userData.getCompanyId()));*/
+        getPrice();
 
         req.getRequestDispatcher("jsp/calc.jsp").forward(req, resp);
+    }
+
+    private void getPrice() {
+        double btcRub = CurrencyHolder.getBtcRub();
+        double btcBcc = 0;
     }
 
     @Override
